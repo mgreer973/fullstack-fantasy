@@ -12,7 +12,7 @@ CREATE TABLE players(
   PRIMARY KEY (player_id)
 );
 
-CREATE TABLE users_
+CREATE TABLE users
 (
 	id int NOT NULL AUTO_INCREMENT,
 	email varchar(255) NOT NULL,
