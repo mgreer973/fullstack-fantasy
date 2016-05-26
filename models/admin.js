@@ -1,7 +1,9 @@
 var orm = require('../config/orm.js');
 
+console.log('in admin.js');
 var admin = {
 	findOne: function(condition, cb) {
+		console.log('admin.findOne')
 	  orm.findOne('users', condition, function(res){
 	      cb(res);
 	  });
@@ -29,4 +31,4 @@ var admin = {
 	}
 };
 
-module.exports = user;
+module.exports = admin;
