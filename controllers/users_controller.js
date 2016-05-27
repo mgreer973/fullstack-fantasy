@@ -59,7 +59,7 @@ router.post('/create', function(req,res) {
 
 				bcrypt.genSalt(10, function(err, salt) {
 						bcrypt.hash(req.body.password, salt, function(err, hash) {
-              user.create(['username', 'email', 'password_hash'], [req.body.username, req.body.email, hash], function(user){
+              user.create(['nick_name', 'email', 'password_hash'], [req.body.username, req.body.email, hash], function(user){
 
                 req.session.username = req.body.username;//we need to grab the username from the form because we don't get it back from MySQL. If we wanted to grab it, then we'd have to do another sql query but it's unnecessary since we already have it here.
                 req.session.user_email = req.body.email; //we need to grab the email from the form because we don't get it back from MySQL. If we wanted to grab it, then we'd have to do another sql query but it's unnecessary since we already have it here.

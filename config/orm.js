@@ -55,7 +55,8 @@ var orm = {
       queryString = queryString + 'VALUES (';
       queryString = queryString + printQuestionMarks(vals.length);
       queryString = queryString + ') ';
-      console.log('ins qs', queryString)
+      console.log('ins qs', queryString);
+      console.log('vals', vals)
       connection.query(queryString, vals, function(err, result) {
         if (err) throw err;
         cb(result);
