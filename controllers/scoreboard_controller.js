@@ -10,7 +10,7 @@ router.get('/', function(req,res) {
 	res.redirect('/scoreboard')
 });
 
-router.get('/display', function(req,res) {
+router.get('/results', function(req,res) {
 	scoreboard.all(function(data){
 		console.log('router.get(/display')
 		var hbsObject = {scoreboard : data, layout: 'scbmain'}

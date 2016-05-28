@@ -6,7 +6,7 @@ var orm = require('../config/orm.js');
 
 var scoreboard = {
 	all: function(cb) {
-		orm.all('scoreboard', function(res){
+		orm.allScore('scoreboard', function(res){
 			cb(res);
 //			console.log('cb', cb);
 		});

@@ -35,6 +35,14 @@ var orm = {
             console.log(result);
         });
     },
+        allScore: function(tableInput, cb) {
+        var queryString = "SELECT u.nick_name, sum(up.fantasy_points) as 'points' FROM users_players up LEFT JOIN players p ON p.player_id=up.player_id    LEFT JOIN users u ON u.id = up.user_id GROUP BY u.nick_name ORDER BY 2 DESC;"  ;
+        connection.query(queryString, function(err, result) {
+            if (err) throw err;
+            cb(result);
+        });
+    },
+
     //use to find one specific team
     findOne: function(tableInput, condition, cb) {
         var queryString = 'SELECT * FROM ' + tableInput;
