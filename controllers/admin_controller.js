@@ -7,6 +7,11 @@ router.get('/sign-in', function(req,res) {
 	res.render('admin/sign_in');
 });
 
+router.get('/loadup', function(req,res) {
+	var hbsObject = {layout: 'mainuup'}
+	res.render('uupinbody', hbsObject);
+});
+
 router.post('/login', function(req, res) {
 	var email = req.body.email;
 
@@ -22,7 +27,7 @@ router.post('/login', function(req, res) {
 						req.session.user_id = user.id;
 						req.session.user_email = user.email;
 
-						res.redirect('/selection');
+						res.redirect('/admin/loadup');
 					}else{
             res.send('You put in the wrong password.')
           }

@@ -1,0 +1,64 @@
+<div style="text-align: center"><img src="http://www.rhombusmag.com/wp-content/uploads/2013/08/fantasy-sports-735x370.png" alt="Scoreboard"  /> 
+</div>
+<h1 id="scoreboardH1">Full Stack Fantasy!</h1>
+ 
+
+<div class="container">
+<body>
+<div class="container">
+<div class="hero-unit">
+<div id="intro">
+  <h1>Fullstack Fantasy</h1>
+  <h2>Update users_players table</h2>
+  <p>The game week is Tuesday thru Monday so enter the Tuesday of the week you want to populate.</p>
+  <p>So entering 05/17/2016 will populate 05/17/2016 thru 05/23/2016 </p>
+<form action="/update?_method=PUT" method="POST" class="button-size">
+
+<!--  <form role="form" > -->
+    <div class="form-group">
+      <label for="example1">Date:</label>
+            <input type="text" placeholder="click to show calendar" id="example1">
+    </div>
+    <button type="submit" id="subBut" class="btn btn-default">Submit</button>
+  </form>
+  </div>
+
+</div>
+</div>
+<!-- Load jQuery and bootstrap datepicker scripts -->
+
+<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.js'></script>
+
+<!-- <script src="js/jquery-1.9.1.min.js"></script> 
+<script src="js/bootstrap-datepicker.js"></script> -->
+<script type="text/javascript">
+// When the document is ready
+var inDate;
+$(document).ready(function () {
+    $('#example1').datepicker({
+        format: "mm/dd/yyyy",
+    daysOfWeekDisabled: "0,1,3,4,5,6"   
+    });
+  
+    $('#subBut').on('click', function(){
+
+            inDate = $('#example1').val();
+            console.log('inDate ', inDate);         
+
+            var userData = {selDate: inDate }
+            console.log('userData ', userData);
+
+        var currentURL = window.location.origin;
+        console.log('currentURL ', currentURL);
+        // AJAX put the data to the friends API. 
+        $.post(currentURL + "/update", userData, function(data){
+            }); 
+
+return false;
+  });
+    
+//  console.log('inDate ', inDate);
+
+}); // doc
+</script>

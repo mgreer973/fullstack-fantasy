@@ -40,28 +40,27 @@
 	</head>
 	<body>
 		<p>
-				<!-- Top Nav: -->
+			Top Nav:
 			{{#unless logged_in}}
-				<a href="/users/sign-in"><!-- Sign In --></a>
-				<a href="/users/new"><!-- Sign Up --></a>
+				<a href="/users/sign-in">Sign In</a>
+				<a href="/users/new">Sign Up</a>
 			{{/unless}}
 
 			{{#if logged_in}}
-				<a href="/users/sign-out"><!-- Sign Out --></a>
+				<a href="/users/sign-out">Sign Out</a>
 			{{/if}}
 
-			<a href="/admin/sign-in"><!-- Admin Sign In --></a>
+			<a href="/admin/sign-in">Sign In</a>
 
 			{{#if logged_in}}
-				<a href="/admin/sign-out"><!-- Sign Out --></a>
+				<a href="/admin/sign-out">Sign Out</a>
 			{{/if}}
 		</p>
 
 		<p>
-			<!-- You can get to a user profile by going to localhost:3000/users/profile/1 (this is the profile for user 1) -->
+			You can get to a user profile by going to localhost:3000/users/profile/1 (this is the profile for user 1)
 		</p>
 		{{{ body }}}
-
 
 <!-- 		THE FOLLOWING IS ALSO TABLE STUFF that I commented out, but it either goes here or on the draft page: -->
 		

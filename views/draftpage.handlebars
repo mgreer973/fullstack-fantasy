@@ -1,4 +1,6 @@
 <h1>Draft Your Team</h1>
+<script>var selectedPlayers = [];
+</script>
 
 <!-- INTERNAL STYLE SHEET FOR NOW (will move to another file once finalized): -->
 
@@ -40,7 +42,7 @@ var template = Handlebars.compile(source);
     }
 </style>
 
-<form class="create-update-form" action="/user_players/create" method="POST">
+<form class="create-update-form" action="/user_players_controller/batchCreate" method="POST">
 
  <table id = "draftTable">
     <thead> 
@@ -62,42 +64,118 @@ var template = Handlebars.compile(source);
             <td>{{this.player_name}}</td> 
             <td>{{this.player_team}}</td> 
             <td>{{position}}</td> 
-            <td id="playerID">{{player_id}}</td>
             <td>
-            <input type="checkbox" class="checkbox" name="selected" id="{{player_id}}" value="{{player_id}}">
+            <input type="checkbox" class="player_id" name="selected" id="{{player_id}}" value="{{player_id}}">
             </td>
 
 
         </tr> 
         {{/each}} 
     </tbody> 
-    <button type="submit">Finalize Team!</button>
+    <button id="draftButton" type="submit">Finalize Team!</button>
 </table> 
-</script>
+
 <script>
-var source = $("#draftTemplate").html(); 
-var template = Handlebars.compile(source); 
+// var selectedPlayers = [];
+
+
+
+console.log(selectedPlayers);
+
+$('#draftButton').on('click', function(){
+
+    // var selectedPlayers = [];
+
+    selectedPlayers = $('input:checkbox:checked').map(function () {
+      return this.value;
+        });
+
+    console.log(selectedPlayers);
+
+
+    if (selectedPlayers.length != 6) {
+        alert('You have not drafted the correct number of players! Please choose exactly 6 players!');
+        return false;
+    } else {
+        alert('Nice nob drafting your team! Good luck!');
+    }
+    });
+
+// .map(function(){
+//         return this.value;
+//         console.log(this.value);
+//     });
+
+// console.log(selectedPlayers);
+
+
+
+// //THREE SOLUTIONS:
+
+// //1: 
+// // selectedPlayers = $('input:checkbox:checked.player').map(function () {
+// //   return this.value;
+// // }).get();
+
+// $("input:checkbox[name=selected]:checked").each(function(){
+//    selectedPlayers.push($(this).val());
+// });
+
+// console.log(selectedPlayers);
+
+//make sure the team length is correct
+
+// function makeArr(){ var selectedPlayers = $('input:checkbox:checked').map(function () {
+//       return this.value;
+//         });
+//     };
+
+
+// $('#draftButton').on('click', function(){
+//     console.log(selectedPlayers);
+//     makeArr();
+//     console.log(selectedPlayers);
+//     // function makeArr(){ var selectedPlayers = $('input:checkbox:checked').map(function () {
+//     //   return this.value;
+//     //     });
+//     // };
+//     // console.log(selectedPlayers);
+//     // makeArr();
+//     // console.log(selectedPlayers);
+
+
+//     if (selectedPlayers.length != 6) {
+//         alert('You have not drafted the correct number of players! Please choose exactly 6 players!');
+//     } else {
+//         alert('Nice nob drafting your team! Good luck!');
+//     }
+//     });
+
+</script>
+
+<script>
+// var source = $("#draftTemplate").html(); 
+// var template = Handlebars.compile(source); 
 
 // I believe I need to pass in draftablePlayers below, which is the object being sent from the players_controller.js. However, it may simply be players..though I am pretty sure it needs to be the highest/top level object that contains an array of other objects
-$('body').append(template(draftablePlayers));
+// $('body').append(template(draftablePlayers));
 
 //trying to push selected players into array:
 //using this JS fiddle as a template http://jsfiddle.net/ish1301/cnsnk/
 
 
     
-// $("#playerID").each(function(i, v){
+// $("#player_id").each(function(i, v){
 //     selectedPlayers[i] = Array();
 //     $(this).children('td').each(function(ii, vv){
 //         selectedPlayers[i][ii] = $(this).text();
 //     }); 
 // // })
 // for (i = 0; i < rowLength; i++){var oCells = oTable.rows.item(i).cells;
-//       var playerid = oCells.item(0).innerHTML;
-//       console.log('playerID ', playerid);current row
+//       var player_id = oCells.item(0).innerHTML;
+//       console.log('player_id ', player_id);current row
 //       var cellLength = oCells.length;};
 
-var selectedPlayers = [];
 
 // $("input:checkbox[name=type]:checked").each(function(){
 //    selectedPlayers.push($(this).val());
@@ -105,21 +183,18 @@ var selectedPlayers = [];
 
 
 
-var oTable = document.getElementById('draftTable');
-   //gets rows of table
-   var rowLength = oTable.rows.length;
-   console.log('rowLength', rowLength);
-   //loops through rows    
-   for (i = 0; i < rowLength; i++){
-     //gets cells of current row  
-      var oCells = oTable.rows.item(i).cells;
-      var playerid = oCells.item(0).innerHTML;
-      console.log('playerid ', playerid);
-      //gets amount of cells of current row
-      var cellLength = oCells.length;
+// var oTable = document.getElementById('draftTable');
+//    //gets rows of table
+//    var rowLength = oTable.rows.length;
+//    console.log('rowLength', rowLength);
+//    //loops through rows    
+//    for (i = 0; i < rowLength; i++){
+//      //gets cells of current row  
+//       var oCells = oTable.rows.item(i).cells;
+//       var player_id = oCells.item(0).innerHTML;
+//       console.log('player_id ', player_id);
+//       //gets amount of cells of current row
+//       var cellLength = oCells.length;
 
-      //loops through each cell in current row
-   }
-
-console.log(selectedPlayers);
-</script>
+//       //loops through each cell in current row
+//    }

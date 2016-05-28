@@ -2,7 +2,10 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var express = require('express');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
+
+// for ajax
+var path = require('path');
 
 var app = express();
 
@@ -23,9 +26,16 @@ app.use(cookieParser());
 //Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(process.cwd() + '/public'));
 
-app.use(bodyParser.urlencoded({
-	extended: false
-}))
+// app.use(bodyParser.urlencoded({	extended: false }));
+
+// BodyParser makes it easy for our server to interpret data sent to it.
+// The code below is pretty standard. ajax
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({type:'application/vnd.api+json'}));
+
+
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'))
 var exphbs = require('express-handlebars');
@@ -48,3 +58,11 @@ app.use('/players', players_controller);
 
 var user_players_controller = require('./controllers/user_players_controller.js');
 app.use('/user_players', user_players_controller);
+
+// ================================================================================
+// ROUTER ajax
+// The below points our server to a series of "route" files.
+// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
+// ================================================================================
+require('./app/routing/api-routes.js')(app);
+require('./app/routing/html-routes.js')(app);
