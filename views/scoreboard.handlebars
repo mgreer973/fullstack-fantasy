@@ -1,0 +1,23 @@
+
+<div style="text-align: center"><img src="http://www.rhombusmag.com/wp-content/uploads/2013/08/fantasy-sports-735x370.png" alt="Scoreboard"  /> 
+</div>
+<h1 id="scoreboardH1">Full Stack Fantasy!</h1>
+ 
+
+<div class="container">
+<div id=tblid>
+<table>
+    <tr>
+        <th style="padding-right: 30px">nick Name</th>
+        <th style="padding-right: 30px">score</th>
+    </tr>
+    {{#each scoreboard}}
+        <tr>
+            <td style="padding-right: 30px">{{this.nick_name}}</td>
+            <td style="padding-right: 30px">{{this.points}}</td>
+        </tr>
+    {{/each}}
+</table>
+</div>
+</div>
+</div>

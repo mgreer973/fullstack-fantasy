@@ -1,6 +1,6 @@
 var orm = require('../config/orm.js');
 
-console.log('in admin.js');
+//console.log('in admin.js');
 var admin = {
 	findOne: function(condition, cb) {
 		console.log('admin.findOne')
