@@ -25,8 +25,17 @@ function objToSql(ob){
 }
 
 
-
 var orm = {
+  //even though you know the table input, leave this as is, so you can use it for multiple things
+    all: function(tableInput, cb) {
+        var queryString = 'SELECT * FROM ' + tableInput + ';';
+        connection.query(queryString, function(err, result) {
+            if (err) throw err;
+            cb(result);
+            console.log(result);
+        });
+    },
+    //use to find one specific team
     findOne: function(tableInput, condition, cb) {
         var queryString = 'SELECT * FROM ' + tableInput;
         queryString = queryString + ' WHERE ';
@@ -37,14 +46,7 @@ var orm = {
             cb(result[0]);
         });
     },
-    all: function(tableInput, cb) {
-        var queryString = 'SELECT * FROM ' + tableInput + ';';
-        connection.query(queryString, function(err, result) {
-            if (err) throw err;
-            cb(result);
-        });
-    },
-        //vals is an array of values that we want to save to cols
+    //vals is an array of values that we want to save to cols
     //cols are the columns we want to insert the values into
     create: function(table, cols, vals, cb) {
       var queryString = 'INSERT INTO ' + table;
@@ -55,13 +57,38 @@ var orm = {
       queryString = queryString + 'VALUES (';
       queryString = queryString + printQuestionMarks(vals.length);
       queryString = queryString + ') ';
-      console.log('ins qs', queryString);
-      console.log('vals', vals)
+
       connection.query(queryString, vals, function(err, result) {
         if (err) throw err;
         cb(result);
       });
+    },
+    //objColVals would be the columns and values that you want to update
+    //an example of objColVals would be {name: panther, sleepy: true}
+    update: function(table, objColVals, condition, cb) {
+      var queryString = 'UPDATE ' + table;
+
+      queryString = queryString + ' SET ';
+      queryString = queryString + objToSql(objColVals);
+      queryString = queryString + ' WHERE ';
+      queryString = queryString + condition;
+
+      console.log(queryString)
+      connection.query(queryString, function(err, result) {
+        if (err) throw err;
+        cb(result);
+      });
+    },
+    delete: function(table, condition, cb){
+      var queryString =  'DELETE FROM ' + table;
+      queryString += 'WHERE ' + condition;
+      console.log(queryString)
+      connection.query(queryString, function(err, result){
+        if (err) throw err;
+        cb(result);
+      }); 
     }
+
 };
 
 module.exports = orm;

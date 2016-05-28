@@ -1,0 +1,53 @@
+    <h1>Handlebars.js test</h1>
+
+    <div id='container'></div>
+
+<script id="templateOne" type="x-template">
+    <table id="table" class="table table-striped table-bordered table-condensed table-hover" >
+        <tr> 
+            <th>
+                Column one
+            </th>
+            <th>
+                Column two
+            </th>                                                
+        </tr>           
+            {{#rows}} 
+        <tr>
+            <td>
+                {{name}}
+            </td>  
+             <td>
+                {{age}}
+             </td>                     
+        </tr>               
+                {{/rows}}        
+    </table>
+    function compactCallHandlebars(
+        /*@Author: Johann Echavarria*/
+            selectorParentElement /* Parent element selector where you will append the template*/
+            ,idMainTemplate /* main template id (in script tag) */
+            ,arrParcialTemplates /*Array of parcial templates to register (ids script tag)*/
+            ,jsonData /*data*/
+            ){
+                           //Compile template:
+                            var theTemplate = Handlebars.compile ( $( "#" + idMainTemplate ).html() ); 
+                            //Add parcials with the same name as id:
+                            $.each(
+                                arrParcialTemplates, 
+                                function( index, value ) {
+                                    Handlebars.registerPartial( value, $( "#" +  value ).html() );            
+                                });                
+                            //Append template to parent with data:                
+                            $( selectorParentElement ).append( theTemplate( jsonData ) );  
+            }
+    oDatos = { 
+            rows: [
+                {"name": "Epicuro", "age": 76},
+                {"name": "Hypatia", "age": 32},
+                {"name": "Byron", "age": 47},
+                {"name": "Friedrich", "age": 53}
+            ]
+        }
+    compactCallHandlebars("#container", "templateOne",[], oDatos);             	     	        	
+</script>

@@ -1,7 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		
+		<title>Full-Stack Fantasy!</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Full-Stack Fantasy</title>
+
+		<!-- Bootstrap Core CSS -->
+		<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom CSS -->
+		<link href="/assets/css/business-frontpage.css" rel="stylesheet">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif] 
+
+
+
+		THE FOLLOWING IS STUFF...i dont know if it should go HERE or on the table page itself FOR THE TABLE-->
+
+
+		<link href="css/prettify.css" rel="stylesheet">
+		<link href="css/hemisu-light.css" rel="stylesheet">
+
+		<link href="css/screen.css" rel="stylesheet" media="screen">
+
+		<link id="style" href="../css/classic.css" rel="stylesheet" media="screen">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<title>Full-Stack Fantasy!</title>
 	</head>
 	<body>
@@ -16,7 +50,7 @@
 				<a href="/users/sign-out">Sign Out</a>
 			{{/if}}
 
-			<a href="/admin/admin_sign-in">Admin Sign In lay</a>
+			<a href="/admin/sign-in">Sign In</a>
 
 			{{#if logged_in}}
 				<a href="/admin/sign-out">Sign Out</a>
@@ -27,5 +61,12 @@
 			You can get to a user profile by going to localhost:3000/users/profile/1 (this is the profile for user 1)
 		</p>
 		{{{ body }}}
+
+<!-- 		THE FOLLOWING IS ALSO TABLE STUFF that I commented out, but it either goes here or on the draft page: -->
+		
+<!-- 		<script src="../js/jquery.min.js"></script>
+		<script src="../plugins/gotopage.js"></script>
+		<script src="../plugins/ajaxpaging.js"></script>
+		<script src="../js/jquery.columns.min.js"></script> -->
 	</body>
 </HTML>

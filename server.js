@@ -38,7 +38,13 @@ var application_controller = require('./controllers/application_controller.js');
 var admin_controller = require('./controllers/admin_controller.js');
 var users_controller = require('./controllers/users_controller.js');
 
+
 app.use('/', application_controller);
 app.use('/admin', admin_controller);
 app.use('/users', users_controller);
 
+var players_controller = require('./controllers/players_controller.js');
+app.use('/players', players_controller);
+
+var user_players_controller = require('./controllers/user_players_controller.js');
+app.use('/user_players', user_players_controller);

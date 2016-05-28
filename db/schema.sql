@@ -24,13 +24,12 @@ CREATE TABLE users
 
 CREATE TABLE users_players
 (
-  id int NOT NULL AUTO_INCREMENT,
-  user_id int NOT NULL,
-  player_id int NOT NULL,
-  fantasy_points int NOT NULL default 0,
-  PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (player_id) REFERENCES players(player_id)
+	id int NOT NULL AUTO_INCREMENT,
+	user_id int NOT NULL,
+	player_id int NOT NULL,
+	fantasy_points int NOT NULL default 0,
+	PRIMARY KEY (id),
+	FOREIGN KEY (user_id) REFERENCES users(id),
+	FOREIGN KEY (player_id) REFERENCES players(player_id)
 );
-
 

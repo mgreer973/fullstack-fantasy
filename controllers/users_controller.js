@@ -1,7 +1,7 @@
 var bcrypt = require('bcryptjs');
 var express = require('express');
 var router  = express.Router();
-//var cat = require('../models/cat.js');
+var players= require('../models/players_models.js'); 
 var user = require('../models/user.js');
 var connection = require('../config/connection.js');
 
@@ -21,7 +21,7 @@ router.get('/sign-out', function(req,res) {
 
 router.post('/login', function(req, res) {
 	var email = req.body.email;
-
+	console.log('post users login')
 	var condition = "email = '" + email + "'";
 
 	user.findOne(condition, function(user){
@@ -34,7 +34,7 @@ router.post('/login', function(req, res) {
 						req.session.user_id = user.id;
 						req.session.user_email = user.email;
 
-						res.redirect('/selection');
+						res.redirect('/players/draftpage');
 					}else{
             res.send('You put in the wrong password.')
           }
@@ -66,7 +66,7 @@ router.post('/create', function(req,res) {
                 req.session.logged_in = true;
                 req.session.user_id = user.insertId; //the MySQL npm package returns the id of the record inserted with a key of insertId.
 
-                res.redirect('/selection')
+                res.redirect('/draftpage')
             	});
 
 						});
